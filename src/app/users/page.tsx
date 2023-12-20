@@ -134,7 +134,7 @@ export default function Page() {
                 {!targetUser ? <div>Search for a user to get started</div> : (
                     <>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-full">
-                            <Card className="h-fit">
+                            <Card>
                                 <CardHeader>
                                     <CardTitle>Avatar</CardTitle>
                                     <CardDescription>Edit {`${targetUser.username}#${targetUser.discriminator}'s avatar`}</CardDescription>
@@ -183,7 +183,7 @@ export default function Page() {
                                     </div>
                                 </CardContent>
                             </Card>
-                            <Card className="h-fit">
+                            <Card>
                                 <CardHeader>
                                     <CardTitle>Badges</CardTitle>
                                     <CardDescription>Edit {`${targetUser.username}#${targetUser.discriminator}'s badges`}</CardDescription>
@@ -192,6 +192,17 @@ export default function Page() {
                                     <div className="grid grid-cols-5 gap-x-2 gap-y-4">
                                         {badgeMap.map((badge, key) => <button onClick={() => toggleBadge(badge.key)} key={key} className="w-fit h-fit p-1 rounded-full" style={{ background: saveData.flags & badge.key ? "#14532d" : "#7f1d1d" }}>{badge.value}</button>)}
                                     </div>
+                                </CardContent>
+                            </Card>
+                            <Card className="h-fit">
+                                <CardHeader>
+                                    <CardTitle>Manage User</CardTitle>
+                                    <CardDescription>Perform actions on a user.</CardDescription>
+                                </CardHeader>
+                                <CardContent className="flex gap-2 justify-center">
+                                    <Button className="danger">Ban User</Button>
+                                    <Button className="danger">Suspend User</Button>
+                                    <Button className="danger">Delete User</Button>
                                 </CardContent>
                             </Card>
                             <div className="w-full h-[1.25rem]"></div>
