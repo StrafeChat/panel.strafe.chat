@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from "react";
-import cookie from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/context/UserContext";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
@@ -8,6 +7,7 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Formatting } from "@/scripts/Formatting";
 import Loading from "@/components/Loading";
+import { toast } from "@/components/ui/use-toast";
 
 export default function AuthService({ children }: { children: JSX.Element }) {
     const pathname = usePathname();
@@ -31,13 +31,13 @@ export default function AuthService({ children }: { children: JSX.Element }) {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API}/panel/@me`, {
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": cookie.get("token")!
+                        "Authorization": localStorage.getItem("token")!
                     }
                 });
 
                 if (!res.ok) {
                     router.push("/login");
-                    return;
+                    return toast({ title: "401 Unauthorized", description: "You are not authorized to view this page.", variant: "destructive" });
                 }
 
                 const data = await res.json();

@@ -6,4 +6,13 @@ export class Formatting {
             return `${process.env.NEXT_PUBLIC_CDN}/avatars/${id}/${hash.replace(/(_png|_gif)$/, extension)}`
         } else return "";
     }
+
+    public static censorEmail = (email: string) => {
+        const atIndex = email.indexOf('@');
+        const visiblePart = email.substring(0, atIndex);
+        const hiddenPart = email.substring(atIndex);
+    
+        const censoredVisiblePart = visiblePart.substring(0, Math.min(visiblePart.length, 3)) + '*'.repeat(visiblePart.length - 3);
+        return censoredVisiblePart + hiddenPart;
+    }
 }

@@ -6,7 +6,6 @@ import { Label } from "@/components/ui/label";
 import { FormEvent, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-import cookie from "js-cookie";
 
 export default function Page() {
 
@@ -22,7 +21,7 @@ export default function Page() {
     const handleSumbit = async (event: FormEvent) => {
         event.preventDefault();
         console.log({ ...login });
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API}/panel/auth`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -34,15 +33,17 @@ export default function Page() {
 
         if (!res.ok) return toast({ title: "Uh oh! Something went wrong.", description: data.message, variant: "destructive" });
 
-        cookie.set("token", data.token);
+        localStorage.setItem("token", data.token);
         router.replace("/");
     }
 
     return (
-        <div className="w-full h-full flex items-center justify-center">
+        <div className="flex items-center justify-center h-screen">
+        <div className="flex flex-col items-center">
+            <h1 className="mb-8 text-5xl font-bold mt-[-75px]">Admin Panel</h1>
             <Card className="w-[350px]">
                 <CardHeader>
-                    <CardTitle>Login</CardTitle>
+                    <CardTitle>Login via Strafe</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSumbit}>
@@ -55,10 +56,12 @@ export default function Page() {
                                 <Label htmlFor="password">Password</Label>
                                 <Input autoComplete="current-password" placeholder="********" id="password" value={login.password} onChange={(event) => setLogin({ ...login, password: event.target.value })} type="password" />
                             </div>
-                            <Button>Login</Button>
+                            <Button className="text-white">Login</Button>
                         </div>
                     </form>
                 </CardContent>
             </Card>
-        </div >)
+        </div>
+    </div >
+  )
 }
