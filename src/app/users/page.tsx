@@ -360,7 +360,7 @@ export default function Page() {
                   <CardTitle>Badges</CardTitle>
                   <CardDescription>
                     Edit{" "}
-                    {`${targetUser.display_name}'s badges.`}
+                    {`${targetUser.display_name}s badges.`}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -384,7 +384,7 @@ export default function Page() {
               <Card className="h-fit">
                 <CardHeader>
                   <CardTitle>Information</CardTitle>
-                  <CardDescription>Information on {targetUser.display_name}'s account.</CardDescription>
+                  <CardDescription>Information on {targetUser.display_name}&apos;s account.</CardDescription>
                 </CardHeader>
                 <CardContent>
                 <div>
