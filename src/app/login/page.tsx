@@ -7,7 +7,7 @@ import { FormEvent, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 
-export default function Page() {
+export default function Login() {
 
     const [login, setLogin] = useState({
         email: "",
@@ -20,7 +20,6 @@ export default function Page() {
 
     const handleSumbit = async (event: FormEvent) => {
         event.preventDefault();
-        console.log({ ...login });
         const res = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/login`, {
             method: "POST",
             headers: {

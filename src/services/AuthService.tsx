@@ -68,8 +68,8 @@ export default function AuthService({ children }: { children: JSX.Element }) {
                             </Link>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <Link href={"/rooms"} legacyBehavior passHref>
-                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>Rooms</NavigationMenuLink>
+                            <Link href={"/spaces"} legacyBehavior passHref>
+                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>Spaces</NavigationMenuLink>
                             </Link>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
